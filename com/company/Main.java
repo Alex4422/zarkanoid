@@ -4,7 +4,8 @@ import javax.swing.*;
 
 /**
  * Author: Alex
- * Title of the class: Main
+ * Element: class
+ * Title: Main
  * Aim of the class: class which allows to run the game
  */
 public class Main {
