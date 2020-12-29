@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import javax.swing.Timer;
 /**
  * Author: Alex
  * Element: class
@@ -77,7 +77,8 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        //timer = new java.util.Timer(delay, this);
+        //package used here : javax.swing.Timer
+        timer = new Timer(delay,this);
         timer.start();
     }
 
@@ -86,7 +87,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      * We will also control the things here
      * @param g
      */
-    public void print(Graphics g){
+    public void paint(Graphics g){
 
         //setting of the background
         g.setColor(Color.GRAY);
@@ -94,7 +95,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
         //check!
         g.setColor(Color.yellow);
-        g.fillRect(0,0,3,562);
+        g.fillRect(0,0,3,592);
         g.fillRect(0,0,692,3);
         g.fillRect(691,0,3,562);
 
@@ -105,6 +106,8 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         //setting of the ball
         g.setColor(Color.green);
         g.fillOval(ballposX,ballposY, 20, 20);
+
+        g.dispose();
     }
 
 
@@ -133,7 +136,47 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     @Override
     public void keyPressed(KeyEvent keyEvent) {
 
+        //If the player press the right key
+        if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT){
+            // if the player reaches the border of the window of the game
+            if(playerX >= 600){
+                //then he is blocked at the position x=600
+                playerX = 600;
+            }else{
+                moveRight();
+            }
+        }
+
+        //If the player press the left key
+        if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT){
+            // if the player reaches the border of the window of the game
+            if(playerX <= 10){
+                //then he is blocked at the position x=10
+                playerX = 10;
+            }else{
+                moveLeft();
+            }
+        }
     }
+
+    /**
+     *
+     */
+    public void moveRight(){
+
+        play = true;
+        playerX += 20;
+    }
+
+    /**
+     *
+     */
+    public void moveLeft(){
+
+        play = true;
+        playerX -= 20;
+    }
+
 
     /**
      *

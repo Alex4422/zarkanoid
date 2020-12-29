@@ -29,5 +29,7 @@ public class Main {
         window.setVisible(true);
         //When I press the cross, I close the window
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        window.add(gamePlay);
     }
 }
