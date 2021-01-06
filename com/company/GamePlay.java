@@ -66,6 +66,12 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      *
      */
     private int ballYdir = -2;
+    /**
+     * name: map
+     * type: MapGenerator
+     * description: declaration of the area where is the bricks
+     */
+    private MapGenerator map;
 
     //constructor of the gameplay, we init the game
     /**
@@ -79,6 +85,8 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      */
     public GamePlay(){
         //test !
+        // col is the number of the bricks
+        map = new MapGenerator(3,8);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -97,10 +105,12 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      */
     public void paint(Graphics g){
 
-        //g.drawString("Hello",100,100);
         //setting of the background
         g.setColor(Color.white);
         g.fillRect(1,1,692,592);
+
+        //We display the map of bricks now
+        map.draw((Graphics2D)g);
 
         //check!
         g.setColor(Color.yellow);
