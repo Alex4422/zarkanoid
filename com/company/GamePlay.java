@@ -150,6 +150,42 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 ballYdir = -ballYdir;
             }
 
+            //interaction with the bricks
+            for(int i = 0; i<map.map.length; i++){
+                for(int j =0; j<map.map[0].length; j++){
+                    if(map.map[i][j] > 0){
+                        //setting of the dimensions for the brickRect which interacts with the rectangle of the ball
+                        int brickX = j*map.brickWidth + 80;
+                        int brickY = i*map.brickHeight + 50;
+                        int brickWidth = map.brickWidth;
+                        int brickHeight = map.brickHeight;
+
+                        //creation of imaginary rectangles for the whole bricks and one for the ball for the interactions
+                        Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
+                        Rectangle ballRect = new Rectangle(ballposX, ballposY, 20, 20);
+                        Rectangle brickRect = rect;
+
+                        //we check if the ball intersects with the brick "or the rectangle"
+                        if (ballRect.intersects(brickRect)){
+                            map.setBrickValue(0, i, j);
+                            //I decrease the number of the bricks
+                            totalBricks--;
+                            //I increase the score of the player
+                            score+=5;
+
+                            //TODO tests
+                            if(ballposX + 19 <= brickRect.x || ballposX + 1 >= brickRect.x + brickRect.width){
+                                //when we hit a brick, the brick is destroyed -and- the direction of the ball X changes
+                                ballXdir = -ballXdir;
+                            }else{
+                                //when we hit a brick, the brick is destroyed -and- the direction of the ball Y changes
+                                ballYdir = -ballYdir;
+                            }
+                        }
+                    }
+                }
+            }
+
             //The ball can move horizontally
             ballposX += ballXdir;
             //The ball can move vertically

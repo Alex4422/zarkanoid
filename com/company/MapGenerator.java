@@ -72,11 +72,23 @@ public class MapGenerator {
                     g.setColor(Color.RED);
                     //We draw these lines
                     g.drawRect(j*brickWidth + 80, i*brickHeight + 50, brickWidth, brickHeight);
-
-
                 }
             }
         }
     }
+
+    /**
+     * Element: method
+     * Title: setBrickValue
+     * Description: set the appearance of a brick, or to be concrete, will be destroyed by the pedal
+     *
+     * @param value
+     * @param row
+     * @param col
+     */
+    public void setBrickValue(int value, int row, int col){
+        map[row][col] = value;
+    }
+
 
 }
