@@ -126,6 +126,49 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         g.setColor(Color.green);
         g.fillOval(ballposX,ballposY, 20, 20);
 
+        //setting of the score
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("serif", Font.BOLD, 25));
+
+        //update of score
+        g.drawString(" " + score, 590, 30);
+
+        //if we success the game, we destroyed all the bricks
+        if (totalBricks <= 0){
+            //we stop the game with the boolean
+            play = false;
+            //we reset the directions of the balls
+            ballXdir = 0;
+            ballYdir = 0;
+            //we display the message of success + the score
+            g.setColor(Color.GREEN);
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("You won! Score: " + score, 190, 300);
+
+            //we display the message of the choice to begin again the game
+            g.setFont(new Font("serif", Font.BOLD, 20));
+            g.drawString("Press Enter to start a new game!", 230, 350);
+
+        }
+
+        //management of the state game over
+        //if the ball falls under the pedal, that is we loose...
+        if (ballposY > 570){
+            //we stop the game with the boolean
+            play = false;
+            //we reset the directions of the balls
+            ballXdir = 0;
+            ballYdir = 0;
+            //we display the message of Game over + the score
+            g.setColor(Color.RED);
+            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.drawString("Game Over, Score: " + score, 190, 300);
+
+            //we display the message of the choice to begin again the game
+            g.setFont(new Font("serif", Font.BOLD, 20));
+            g.drawString("Press Enter to restart!", 230, 350);
+        }
+
         //useful to release the resources
         g.dispose();
 
@@ -246,6 +289,31 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 moveLeft();
             }
         }
+
+        //if we press the touch Enter when we will finish the game
+        if(keyEvent.getKeyCode() == KeyEvent.VK_ENTER){
+            //if the level is finished
+            if (!play){
+                //we restart the game with the boolean play
+                play = true;
+                //we put the ball at a particular place
+                ballposX = 120;
+                ballposY = 350;
+                //we set the direction of the ball - CHECK!
+                ballXdir = -1;
+                ballYdir = -2;
+                //We reset the score at 0
+                score = 0;
+                //We reset the number of bricks
+                totalBricks = 21;
+                //We create a new map
+                map = new MapGenerator(3,7);
+
+                //we repaint the map back to the initial state of the game
+                repaint();
+            }
+        }
+
     }
 
     /**
