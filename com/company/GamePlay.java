@@ -15,39 +15,49 @@ import javax.swing.Timer;
  */
 public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
-    //variables for the gameplay
-
     /**
-     * name: play
-     * type: boolean
-     * description: marker to say us if the th game is started or not
+     * Element: variable
+     * Name: play
+     * Type: boolean
+     * Description: marker to say us if the game is started or not
      */
     private boolean play = false;
-    //score of the player
     /**
-     *
+     * Element: variable
+     * Name: score
+     * Type: int
+     * Description: counts the number of points of the player during a game
      */
     private int score = 0;
-    //bricks to shoot
     /**
-     *
+     * Element: variable
+     * Name: totalBricks
+     * Type: int
+     * Description: number of bricks to destroy during a game
      */
     private int totalBricks = 21;
     //timer for the game
     /**
-     *
+     * Element: variable
+     * Name: timer
+     * Type: Timer
+     * Description: count the time ? TOCHECK
      */
     private Timer timer;
-    //initiation of the timer with the delay
     /**
-     *
+     * Element: variable
+     * Name: delay
+     * Type: int
+     * Description: initiation of the timer with the delay ? TOCHECK
      */
     private int delay = 8;
-    //position of the player, here the pedal
     /**
-     *
+     * Element: variable
+     * Name: playerX
+     * Type: int
+     * Description: position of the player in x-axis, here the pedal
      */
-    private  int playerX = 310;
+    private int playerX = 310;
     //position of ball in the 2D space
     /**
      *
@@ -72,8 +82,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      * description: declaration of the area where is the bricks
      */
     private MapGenerator map;
-
-    //constructor of the gameplay, we init the game
+    
     /**
      * Element: constructor
      * Title: GamePlay

@@ -1,11 +1,10 @@
 package com.company;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Author: Alex
- * Element: class
+ * Element: class, it is the entry point of the game
  * Title: Main
  * Aim of the class: class which allows to run the game
  */
@@ -37,27 +36,5 @@ public class Main {
 
         //Do we display the window?
         window.setVisible(true);
-
-        //check why the code of the author doen't work!
-
-        /*
-        //creation of the window for the game
-        JFrame window = new JFrame();
-        //call of the business logic
-        GamePlay gamePlay = new GamePlay();
-
-        //definitions of the measures of the window
-        window.setBounds(10,10,700,600);
-        //title of the window
-        window.setTitle("Zarkanoid");
-        //interdiction to resize the window
-        window.setResizable(false);
-        //Do we display the window?
-        window.setVisible(true);
-        //When I press the cross, I close the window
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        window.add(gamePlay);
-        */
     }
 }
