@@ -6,10 +6,16 @@ import javax.swing.*;
  * Author: Alex
  * Element: class, it is the entry point of the game
  * Title: Main
- * Aim of the class: class which allows to run the game
+ * Description: class which allows to run the game
  */
 public class Main {
 
+    /**
+     * Element: method
+     * Title: main
+     * Description: it is the entry point of the class
+     * @param args
+     */
     public static void main(String[] args) {
 
         //title log

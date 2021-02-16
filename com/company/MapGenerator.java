@@ -1,12 +1,11 @@
 package com.company;
 
-
 import java.awt.*;
 
 /**
  * Element: class
  * Title: MapGenerator
- * Description:
+ * Description: manages the appearance and the behaviour of the level
  */
 public class MapGenerator {
 
@@ -38,16 +37,19 @@ public class MapGenerator {
      * @param col
      */
     public MapGenerator(int row, int col) {
+
         map = new int[row][col];
+        //horizontal
         for (int i = 0; i < map.length; i++) {
+            //vertical
             for (int j = 0; j < map[0].length; j++) {
+                //we fill in the grid
                 map[i][j] = 1;
             }
         }
-
+        //dimensions of brick
         brickWidth = 540 / col;
         brickHeight = 150 / row;
-
     }
 
     /**
@@ -63,12 +65,12 @@ public class MapGenerator {
                 if (map[i][j] > 0) {
                     //We colorize the surface
                     g.setColor(Color.BLACK);
-                    //We fill out the surface. E: you must multiply not add between i & brickHeight
+                    //We fill out the surface. N.B.: you must multiply not add between i & brickHeight
                     g.fillRect(j*brickWidth + 80, i*brickHeight + 50, brickWidth, brickHeight);
 
                     //We will separate the area in bricks
                     g.setStroke(new BasicStroke(3));
-                    //The limits between the limits are red
+                    //The limits between the limits are red here
                     g.setColor(Color.RED);
                     //We draw these lines
                     g.drawRect(j*brickWidth + 80, i*brickHeight + 50, brickWidth, brickHeight);
@@ -80,7 +82,7 @@ public class MapGenerator {
     /**
      * Element: method
      * Title: setBrickValue
-     * Description: set the appearance of a brick, or to be concrete, will be destroyed by the pedal
+     * Description: set the appearance of a brick, or to be concrete, will be destroyed by the ball
      *
      * @param value
      * @param row
@@ -89,6 +91,4 @@ public class MapGenerator {
     public void setBrickValue(int value, int row, int col){
         map[row][col] = value;
     }
-
-
 }

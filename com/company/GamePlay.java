@@ -7,11 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.Timer;
+
 /**
  * Author: Alex
  * Element: class
  * Title: GamePlay
- * Aim of the class: class which makes the business logic of the game
+ * Description: class which makes the business logic of the game
  */
 public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
@@ -19,7 +20,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      * Element: variable
      * Name: play
      * Type: boolean
-     * Description: marker to say us if the game is started or not
+     * Description: marker to tell us if the game is started or not
      */
     private boolean play = false;
     /**
@@ -36,7 +37,6 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      * Description: number of bricks to destroy during a game
      */
     private int totalBricks = 21;
-    //timer for the game
     /**
      * Element: variable
      * Name: timer
@@ -58,22 +58,32 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      * Description: position of the player in x-axis, here the pedal
      */
     private int playerX = 310;
-    //position of ball in the 2D space
     /**
-     *
+     * Element: variable
+     * Name: ballposX
+     * Type: int
+     * Description: position of the ball in X-axis
      */
     private int ballposX = 120;
     /**
-     *
+     * Element: variable
+     * Name: ballposY
+     * Type: int
+     * Description: position of the ball in Y-axis
      */
     private int ballposY = 350;
-    //Where will the ball go ?
     /**
-     *
+     * Element: variable
+     * Name: ballXdir
+     * Type: int
+     * Description: direction of the ball in X-axis. Where will the ball go? TOTEST
      */
     private int ballXdir = -1;
     /**
-     *
+     * Element: variable
+     * Name: ballYdir
+     * Type: int
+     * Description: direction of the ball in Y-axis TOTEST
      */
     private int ballYdir = -2;
     /**
@@ -86,7 +96,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     /**
      * Element: constructor
      * Title: GamePlay
-     * Aim of the constructor: initialise the game with different values
+     * Description: initialise the game with different values
      *  addKeyListener
      *  setFocusable
      *  setFocusTraversalKeysEnabled
@@ -94,7 +104,8 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
      */
     public GamePlay(){
         //test !
-        // col is the number of the bricks
+        //col is the number of the bricks
+        //row is the line of the break
         map = new MapGenerator(3,8);
         addKeyListener(this);
         setFocusable(true);
@@ -104,11 +115,10 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         timer.start();
     }
 
-
     /**
      * Element: method
      * Title: paint
-     * Description: initialisation of the display of the ball, the pedal and different of the visual game.
+     * Description: initialisation of the display of the ball, the pedal and different objects of the visual game.
      * We will also control the things here
      * @param g
      */
@@ -121,7 +131,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
         //We display the map of bricks now
         map.draw((Graphics2D)g);
 
-        //check!
+        //We emphasise the limits of the game window check!
         g.setColor(Color.yellow);
         g.fillRect(0,0,3,592);
         g.fillRect(0,0,692,3);
@@ -137,7 +147,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
         //setting of the score
         g.setColor(Color.BLACK);
-        g.setFont(new Font("serif", Font.BOLD, 25));
+        g.setFont(new Font("verdana", Font.BOLD, 25));
 
         //update of score
         g.drawString(" " + score, 590, 30);
@@ -151,11 +161,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             ballYdir = 0;
             //we display the message of success + the score
             g.setColor(Color.GREEN);
-            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.setFont(new Font("verdana", Font.BOLD, 30));
             g.drawString("You won! Score: " + score, 190, 300);
 
             //we display the message of the choice to begin again the game
-            g.setFont(new Font("serif", Font.BOLD, 20));
+            g.setFont(new Font("verdana", Font.BOLD, 20));
             g.drawString("Press Enter to start a new game!", 230, 350);
 
         }
@@ -170,11 +180,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             ballYdir = 0;
             //we display the message of Game over + the score
             g.setColor(Color.RED);
-            g.setFont(new Font("serif", Font.BOLD, 30));
+            g.setFont(new Font("verdana", Font.BOLD, 30));
             g.drawString("Game Over, Score: " + score, 190, 300);
 
             //we display the message of the choice to begin again the game
-            g.setFont(new Font("serif", Font.BOLD, 20));
+            g.setFont(new Font("verdana", Font.BOLD, 20));
             g.drawString("Press Enter to restart!", 230, 350);
         }
 
@@ -243,7 +253,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             //The ball can move vertically
             ballposY += ballYdir;
 
-            //If the ball touches the vertical left limit we inverse the direction of the ball
+            //If the ball touches the vertical left limit of the window, we inverse the direction of the ball
             if(ballposX < 0){
                 ballXdir = -ballXdir;
             }
@@ -251,7 +261,7 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
             if(ballposY < 0){
                 ballYdir = -ballYdir;
             }
-            //If the ball touches the vertical right limit we inverse the direction of the ball
+            //If the ball touches the vertical right limit of the window, we inverse the direction of the ball
             if(ballposX > 670){
                ballXdir =-ballXdir;
             }
@@ -262,7 +272,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     }
 
     /**
-     *
+     * Element: method
+     * Name: keyTyped
+     * Type: void
+     * Description: Called just after the user types a Unicode character into the
+     *  listened-to component.
      * @param keyEvent
      */
     @Override
@@ -271,7 +285,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     }
 
     /**
-     *
+     * Element: method
+     * Name: keyPressed
+     * Type: void
+     * Description: Called just after the user presses a key while the listened-to
+     *  component has the focus.
      * @param keyEvent
      */
     @Override
@@ -322,11 +340,14 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
                 repaint();
             }
         }
-
     }
 
     /**
-     *
+     * Element: method
+     * Name: moveRight
+     * Type: void
+     * Description: manages how the player can move the pedal to the right direction
+     * with the speed
      */
     public void moveRight(){
 
@@ -335,7 +356,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
     }
 
     /**
-     *
+     * Element: method
+     * Name: moveLeft
+     * Type: void
+     * Description: manages how the player can move the pedal to the left direction
+     *  with the speed
      */
     public void moveLeft(){
 
@@ -345,7 +370,11 @@ public class GamePlay extends JPanel implements KeyListener, ActionListener {
 
 
     /**
-     *
+     * Element: method
+     * Name: keyReleased
+     * Type: void
+     * Description: Called just after the user releases a key while the listened-to
+     *  component has the focus.
      * @param keyEvent
      */
     @Override
