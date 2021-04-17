@@ -1,3 +1,3 @@
 # zarkanoid
 an Arkanoid similar game developed in Java
--- under construction --
+-- README.md under construction --
